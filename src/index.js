@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom'
 import './index.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Main from './App/Main.js'
-import { Provider as AlertProvider } from 'react-alert'
-import AlertTemplate from 'react-alert-template-basic'
+import { BrowserRouter } from 'react-router-dom'
 
-ReactDOM.render(
-  <AlertProvider template={AlertTemplate}>
+ReactDOM.render((
+  <BrowserRouter>
     <Main />
-  </AlertProvider>, document.getElementById('root'))
+  </BrowserRouter>
+), document.getElementById('root'))

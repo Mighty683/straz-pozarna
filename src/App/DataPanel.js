@@ -5,7 +5,11 @@ class DataPanel extends Component {
   render () {
     return (
       <ul className='data-panel list-group'>
-        {this.props.citiesData.map(city => <CityPanel {... {cityData: city, maxTime: this.props.maxTime}} />)}
+        {
+          this.props.citiesData
+            ? (this.props.citiesData.map(city => <CityPanel {... {cityData: city, maxTime: this.props.maxTime}} />))
+            : (<h2> Brak danych </h2>)
+        }
       </ul>
     )
   }

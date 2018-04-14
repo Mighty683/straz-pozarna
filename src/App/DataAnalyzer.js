@@ -2,8 +2,8 @@ export default {
   prepareData (data) {
     let citiesGraph = this.prepareCitiesGraph(data)
     return {
-        citiesData: this.prepareCitiesData(citiesGraph),
-        maxTime: data.max_czas_przejazdu
+      citiesData: this.prepareCitiesData(citiesGraph),
+      maxTime: data.max_czas_przejazdu
     }
   },
 
@@ -38,13 +38,14 @@ export default {
     if (cityNode.hasFireBrigade) {
       return arrivalTime
     } else {
-      for (let i = 0 ; i < cityNode.roads.length ; i++) {
-          let road = cityNode.roads[i]
-          if (road.dest.hasFireBrigade) {
-            return road.arrivalTime
-          } else {
-            return -1
-          }
+        // TODO Rekurencja?
+      for (let i = 0; i < cityNode.roads.length; i++) {
+        let road = cityNode.roads[i]
+        if (road.dest.hasFireBrigade) {
+          return road.arrivalTime
+        } else {
+          return -1
+        }
       }
     }
   },
@@ -53,7 +54,6 @@ export default {
     return data.drogi.filter(road => {
       return road.miasta.indexOf(city.nazwa) >= 0
     }).map(road => {
-        console.log(road)
       return {
         arrivalTime: road.czas_przejazdu,
         dest: road.miasta.find(cityName => cityName !== city.nazwa)

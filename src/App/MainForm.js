@@ -41,12 +41,12 @@ class MainForm extends Component {
 
   render () {
     return (
-      <form onSubmit={this.handleSubmit} className='main-input flex-row justify-content-lg-center'>
-        <div className='col-lg-12 row'>
-          <h2>Wprowadź dane:</h2>
-          <textarea id='textarea' className='col-lg-12' value={this.state.textArea} onChange={this.handleTextAreaChange} />
+      <form onSubmit={this.handleSubmit} className='main-input form-group flex-row justify-content-lg-center'>
+        <div className='col-lg-12 form-group row'>
+          <label>Wprowadź dane:</label>
+          <textarea id='textarea' className='form-control col-lg-12' value={this.state.textArea} onChange={this.handleTextAreaChange} />
         </div>
-        <button id='submit' type='submit' className='btn btn-primary col-md-3 col-xs-12'>Zatwierdź</button>
+        <button id='submit' type='submit' className='form-control btn btn-primary col-md-3 col-xs-12'>Zatwierdź</button>
       </form>
     )
   }
