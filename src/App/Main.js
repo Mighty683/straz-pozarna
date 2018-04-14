@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import Welcome from './Welcome.js';
+import React, { Component } from 'react'
+import Welcome from './Welcome.js'
 import MainForm from './MainForm.js'
+import DataPanel from './DataPanel.js'
 
 class Main extends Component {
-
   constructor () {
-    super();
+    super()
     this.state = {
-      showWelcome: true,
-      dataObject: {}
+      content: 'welcome',
+      citiesData: {}
     }
     this.handleContinue = this.handleContinue.bind(this)
     this.handleDataChange = this.handleDataChange.bind(this)
@@ -16,29 +16,33 @@ class Main extends Component {
 
   handleContinue () {
     this.setState({
-      showWelcome: false
+      content: 'form'
     })
   }
 
-  handleDataChange (dataObject) {
+  handleDataChange (preparedData) {
     this.setState({
-      dataObject: dataObject
+      content: 'dataPanel',
+      ...preparedData
     })
   }
 
   render () {
-    const mainContent = this.state.showWelcome ?
-      <Welcome handleContinue={this.handleContinue}/> :
-      <MainForm handleDataChange={this.handleDataChange}/>
+    const CONTENT = {
+      welcome: <Welcome handleContinue={this.handleContinue} />,
+      form: <MainForm handleDataChange={this.handleDataChange} />,
+      dataPanel: <DataPanel {... {citiesData: this.state.citiesData, maxTime: this.state.maxTime}} />
+    }
+
     return (
-      <div className="main container">
-        <header className="text-center">
-          <h1 className="App-title">Straż Pożarna</h1>
+      <div className='main container'>
+        <header className='text-center'>
+          <h1 className='App-title'>Straż Pożarna</h1>
         </header>
-        {mainContent}
+        {CONTENT[this.state.content]}
       </div>
-    );
+    )
   }
 }
 
-export default Main;
+export default Main

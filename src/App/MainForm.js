@@ -1,28 +1,33 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { withAlert } from 'react-alert'
+import DataAnalyzer from './DataAnalyzer.js'
 
 class MainForm extends Component {
-
   constructor (props) {
-    super(props);
+    super(props)
 
     this.state = {
-      textArea: 'JSON'
-    };
+      textArea: '{"miasta" : [ { "nazwa" : "A", "ma_jednostke" : true }, { "nazwa" : "B","ma_jednostke" : true},{"nazwa" : "C","ma_jednostke" : false},{"nazwa" : "D","ma_jednostke" : false }, { "nazwa" : "E", "ma_jednostke" : true }],"drogi" : [{"miasta" : ["A", "B"],"czas_przejazdu" : 2},{"miasta" : ["A", "C"],"czas_przejazdu" : 3},{"miasta" : ["A", "D"],"czas_przejazdu" : 4},{"miasta" : ["A", "E"],"czas_przejazdu" : 1}],"max_czas_przejazdu" : 10}'
+    }
 
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleTextAreaChange = this.handleTextAreaChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleTextAreaChange = this.handleTextAreaChange.bind(this)
   }
 
   handleSubmit (values) {
-    let parsedObject;
-    values.preventDefault();
+    let parsedObject
+    values.preventDefault()
     try {
-      parsedObject = JSON.parse(this.state.textArea);
-    }
-    catch (err) {
+      parsedObject = JSON.parse(this.state.textArea)
+      try {
+        parsedObject = DataAnalyzer.prepareData(parsedObject)
+      } catch (err) {
+        this.props.alert.error(err)
+        return
+      }
+    } catch (err) {
       this.props.alert.error('Zły format danych, wprowadź poprawny JSON!')
-      return;
+      return
     }
     this.props.alert.success('Załadowano dane!')
     this.props.handleDataChange(parsedObject)
@@ -34,16 +39,16 @@ class MainForm extends Component {
     })
   }
 
-  render() {
+  render () {
     return (
-      <div>
-        <form onSubmit={this.handleSubmit} className="main-input row justify-content-xs-center">
-        <h2>Wprowadź dane:</h2>
-          <textarea id="textarea" className="col-lg-12" value={this.state.textArea} onChange={this.handleTextAreaChange}></textarea>
-          <button id="submit" type="submit" className="btn btn-primary col-md-3 col-xs-12">Zatwierdź</button>
-        </form>
-      </div>
-    );
+      <form onSubmit={this.handleSubmit} className='main-input flex-row justify-content-lg-center'>
+        <div className='col-lg-12 row'>
+          <h2>Wprowadź dane:</h2>
+          <textarea id='textarea' className='col-lg-12' value={this.state.textArea} onChange={this.handleTextAreaChange} />
+        </div>
+        <button id='submit' type='submit' className='btn btn-primary col-md-3 col-xs-12'>Zatwierdź</button>
+      </form>
+    )
   }
 }
 
