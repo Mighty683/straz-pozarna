@@ -34,7 +34,6 @@ export default {
   },
 
   calculateArrivalTime (cityNode, initialTime) {
-    console.log(cityNode)
     let arrivalTime = 0
     if (cityNode.hasFireBrigade) {
       return arrivalTime

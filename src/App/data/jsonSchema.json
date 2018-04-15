@@ -1,0 +1,89 @@
+{
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "properties": {
+    "miasta": {
+      "$id": "/properties/miasta",
+      "type": "array",
+      "items": {
+        "$id": "/properties/miasta/items",
+        "type": "object",
+        "properties": {
+          "nazwa": {
+            "$id": "/properties/miasta/items/properties/nazwa",
+            "type": "string",
+            "title": "The Nazwa Schema ",
+            "default": "",
+            "examples": [
+              "A"
+            ]
+          },
+          "ma_jednostke": {
+            "$id": "/properties/miasta/items/properties/ma_jednostke",
+            "type": "boolean",
+            "title": "The Ma_jednostke Schema ",
+            "default": false,
+            "examples": [
+              false
+            ]
+          }
+        },
+        "required": [
+          "nazwa",
+          "ma_jednostke"
+        ]
+      }
+    },
+    "drogi": {
+      "$id": "/properties/drogi",
+      "type": "array",
+      "items": {
+        "$id": "/properties/drogi/items",
+        "type": "object",
+        "properties": {
+          "miasta": {
+            "$id": "/properties/drogi/items/properties/miasta",
+            "type": "array",
+            "items": {
+              "$id": "/properties/drogi/items/properties/miasta/items",
+              "type": "string",
+              "title": "The 0th Schema ",
+              "default": "",
+              "examples": [
+                "A",
+                "B"
+              ]
+            }
+          },
+          "czas_przejazdu": {
+            "$id": "/properties/drogi/items/properties/czas_przejazdu",
+            "type": "integer",
+            "title": "The Czas_przejazdu Schema ",
+            "default": 0,
+            "examples": [
+              20
+            ]
+          }
+        },
+        "required": [
+          "miasta",
+          "czas_przejazdu"
+        ]
+      }
+    },
+    "max_czas_przejazdu": {
+      "$id": "/properties/max_czas_przejazdu",
+      "type": "integer",
+      "title": "The Max_czas_przejazdu Schema ",
+      "default": 0,
+      "examples": [
+        10
+      ]
+    }
+  },
+  "required": [
+    "miasta",
+    "drogi",
+    "max_czas_przejazdu"
+  ]
+}
