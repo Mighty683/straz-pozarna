@@ -8,7 +8,7 @@ class DataPanel extends Component {
         {
           this.props.citiesData
             ? (this.props.citiesData.map(city => <CityPanel {... {cityData: city, maxTime: this.props.maxTime}} />))
-            : (<h2> Brak danych </h2>)
+            : (<h2> Brak danych, wróc do formularza.</h2>)
         }
       </ul>
     )

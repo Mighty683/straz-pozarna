@@ -3,9 +3,19 @@ body {
   padding: 0;
   font-family: sans-serif; }
 
-.btn {
+.main header {
+  margin-top: 20px; }
+
+.main footer {
+  margin: 20px 0; }
+
+.nav-bar .navbar {
+  background-color: #ff666666;
   margin: 15px 0; }
 
 .main-input textarea {
   min-height: 200px;
-  margin: 15px 0; }
+  margin-bottom: 15px; }
+
+.city-panel p {
+  margin: 0; }

@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
-import Welcome from './Welcome.js'
-import MainForm from './MainForm.js'
-import DataPanel from './DataPanel.js'
 import { Provider as AlertProvider } from 'react-alert'
 import AlertTemplate from 'react-alert-template-basic'
 import PropTypes from 'prop-types'
 import { Route, Switch } from 'react-router-dom'
 import { withRouter } from 'react-router'
+
+import Welcome from './Welcome.js'
+import MainForm from './MainForm.js'
+import DataPanel from './DataPanel.js'
+import NavBar  from './NavBar.js'
 
 class Main extends Component {
   static propTypes = {
@@ -14,9 +16,7 @@ class Main extends Component {
   }
   constructor () {
     super()
-    this.state = {
-      citiesData: {}
-    }
+    this.state = {}
     this.handleContinue = this.handleContinue.bind(this)
     this.handleDataChange = this.handleDataChange.bind(this)
   }
@@ -43,6 +43,7 @@ class Main extends Component {
         <div className='main container text-center'>
           <header>
             <h1 className='App-title'>Straż Pożarna</h1>
+            <NavBar />
           </header>
           <Switch>
             <Route exact={true} path='/' render={() => (

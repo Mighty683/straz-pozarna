@@ -34,11 +34,12 @@ export default {
   },
 
   calculateArrivalTime (cityNode, initialTime) {
+    console.log(cityNode)
     let arrivalTime = 0
     if (cityNode.hasFireBrigade) {
       return arrivalTime
     } else {
-        // TODO Rekurencja?
+      // TODO Rekurencja?
       for (let i = 0; i < cityNode.roads.length; i++) {
         let road = cityNode.roads[i]
         if (road.dest.hasFireBrigade) {

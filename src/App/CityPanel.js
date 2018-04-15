@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 class CityPanel extends Component {
   getClass () {
-    let className = 'list-group-item ',
+    let className = 'city-panel list-group-item ',
       arrivalTime = this.props.cityData.arrivalTime
     if (arrivalTime < this.props.maxTime && arrivalTime >= 0) {
       className += 'list-group-item-success '
@@ -13,13 +13,26 @@ class CityPanel extends Component {
     }
     return className
   }
+  getInfoAboutFireBrigade () {
+    let arrivalTime = this.props.cityData.arrivalTime
+    if (this.props.cityData.hasFireBrigade) {
+      return 'Posiada jednostkę straży pożarnej.'
+    } else {
+      if (arrivalTime < 0) {
+        return 'Brak możliwości dojazdu straży pożarnej.'
+      } else if (arrivalTime > this.props.maxTime) {
+        return `Czas dojazdu "${arrivalTime}" przekracza przyjęty limit.`
+      } else {
+        return `Czas dojazdu wynosi ${arrivalTime}.`
+      }
+    }
+  }
 
   render () {
     return (
       <li className={this.getClass()}>
-        <p>City Name: <span> {this.props.cityData.name} </span></p>
-        <p>Has fire brigade: <span> {this.props.cityData.hasFireBrigade.toString()} </span></p>
-        <p>Arrival Time: <span> {this.props.cityData.arrivalTime} </span></p>
+        <p>Nazwa: <span> {this.props.cityData.name} </span></p>
+        <p>{this.getInfoAboutFireBrigade()}</p>
       </li>
     )
   }

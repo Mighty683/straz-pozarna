@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import { withAlert } from 'react-alert'
 import DataAnalyzer from './DataAnalyzer.js'
+import { Button } from 'reactstrap'
 
 class MainForm extends Component {
   constructor (props) {
     super(props)
 
     this.state = {
-      textArea: '{"miasta" : [ { "nazwa" : "A", "ma_jednostke" : true }, { "nazwa" : "B","ma_jednostke" : true},{"nazwa" : "C","ma_jednostke" : false},{"nazwa" : "D","ma_jednostke" : false }, { "nazwa" : "E", "ma_jednostke" : true }],"drogi" : [{"miasta" : ["A", "B"],"czas_przejazdu" : 2},{"miasta" : ["A", "C"],"czas_przejazdu" : 3},{"miasta" : ["A", "D"],"czas_przejazdu" : 4},{"miasta" : ["A", "E"],"czas_przejazdu" : 1}],"max_czas_przejazdu" : 10}'
+      textArea: '{"miasta" : [ { "nazwa" : "A", "ma_jednostke" : false }, { "nazwa" : "B","ma_jednostke" : true},{"nazwa" : "C","ma_jednostke" : false},{"nazwa" : "D","ma_jednostke" : false }, { "nazwa" : "E", "ma_jednostke" : true }],"drogi" : [{"miasta" : ["A", "B"],"czas_przejazdu" : 20},{"miasta" : ["A", "C"],"czas_przejazdu" : 3},{"miasta" : ["A", "D"],"czas_przejazdu" : 4},{"miasta" : ["A", "E"],"czas_przejazdu" : 11}],"max_czas_przejazdu" : 10}'
     }
 
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -41,12 +42,12 @@ class MainForm extends Component {
 
   render () {
     return (
-      <form onSubmit={this.handleSubmit} className='main-input form-group flex-row justify-content-lg-center'>
-        <div className='col-lg-12 form-group row'>
+      <form onSubmit={this.handleSubmit} className='main-input justify-content-lg-center'>
+        <div className='form-group'>
           <label>Wprowadź dane:</label>
-          <textarea id='textarea' className='form-control col-lg-12' value={this.state.textArea} onChange={this.handleTextAreaChange} />
+          <textarea id='textarea' className='form-control' value={this.state.textArea} onChange={this.handleTextAreaChange} />
+          <Button color='primary' id='submit' type='submit' className='form-control' onClick={this.props.handleContinue}>Zatwierdź</Button>
         </div>
-        <button id='submit' type='submit' className='form-control btn btn-primary col-md-3 col-xs-12'>Zatwierdź</button>
       </form>
     )
   }
