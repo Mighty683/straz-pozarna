@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { withRouter } from 'react-router'
 import { Navbar,
   NavbarBrand,
@@ -34,13 +33,19 @@ class NavBar extends Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className='ml-auto' navbar>
               <NavItem>
-                <NavLink href='/'>Strona powitalna</NavLink>
+                <NavLink onClick={()=>{
+                  this.props.history.push('/')
+                }}>Strona powitalna</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href='/form'>Formularz</NavLink>
+                <NavLink onClick={()=>{
+                  this.props.history.push('/form')
+                }}>Formularz</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href='/datapanel'>Panel Danych</NavLink>
+                <NavLink onClick={()=>{
+                  this.props.history.push('/datapanel')
+                }}>Panel Danych</NavLink>
               </NavItem>
             </Nav>
           </Collapse>
@@ -50,4 +55,4 @@ class NavBar extends Component {
   }
 }
 
-export default NavBar
+export default withRouter(NavBar)
