@@ -13,7 +13,22 @@ New browser windows should appear. If it doesn't happen simply get to `http://lo
 
 Example JSON required by application:
 ```json
-{"miasta" : [ { "nazwa" : "A", "ma_jednostke" : false }, { "nazwa" : "B","ma_jednostke" : true},{"nazwa" : "C","ma_jednostke" : false},{"nazwa" : "D","ma_jednostke" : false }, { "nazwa" : "E", "ma_jednostke" : true }],"drogi" : [{"miasta" : ["A", "B"],"czas_przejazdu" : 20},{"miasta" : ["A", "C"],"czas_przejazdu" : 3},{"miasta" : ["A", "D"],"czas_przejazdu" : 4},{"miasta" : ["A", "E"],"czas_przejazdu" : 11}],"max_czas_przejazdu" : 10}
+{
+  "miasta" : [
+    {"nazwa" : "A", "ma_jednostke" : false },
+    {"nazwa" : "B","ma_jednostke" : true},
+    {"nazwa" : "C","ma_jednostke" : false},
+    {"nazwa" : "D","ma_jednostke" : false },
+    {"nazwa" : "E", "ma_jednostke" : true }
+  ],
+  "drogi" : [
+    {"miasta" : ["A", "B"],"czas_przejazdu" : 20},
+    {"miasta" : ["A", "C"],"czas_przejazdu" : 3},
+    {"miasta" : ["A", "D"],"czas_przejazdu" : 4},
+    {"miasta" : ["A", "E"],"czas_przejazdu" : 11}
+  ],
+  "max_czas_przejazdu" : 10
+}
 ```
 
 ## Production
