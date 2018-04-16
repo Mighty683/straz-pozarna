@@ -3,10 +3,10 @@ import React, { Component } from 'react'
 class CityPanel extends Component {
   getClass () {
     let className = 'city-panel list-group-item ',
-      arrivalTime = this.props.cityData.arrivalTime
-    if (arrivalTime < this.props.maxTime && arrivalTime >= 0) {
+      distance = this.props.cityData.distance
+    if (distance < this.props.maxTime && distance >= 0) {
       className += 'list-group-item-success '
-    } else if (arrivalTime === this.props.maxTime) {
+    } else if (distance === this.props.maxTime) {
       className += 'list-group-item-warning '
     } else {
       className += 'list-group-item-danger '
@@ -14,16 +14,16 @@ class CityPanel extends Component {
     return className
   }
   getInfoAboutFireBrigade () {
-    let arrivalTime = this.props.cityData.arrivalTime
+    let distance = this.props.cityData.distance
     if (this.props.cityData.hasFireBrigade) {
       return 'Posiada jednostkę straży pożarnej.'
     } else {
-      if (arrivalTime < 0) {
+      if (distance < 0) {
         return 'Brak możliwości dojazdu straży pożarnej.'
-      } else if (arrivalTime > this.props.maxTime) {
-        return `Czas dojazdu "${arrivalTime}" przekracza przyjęty limit.`
+      } else if (distance > this.props.maxTime) {
+        return `Czas dojazdu "${distance}" przekracza przyjęty limit.`
       } else {
-        return `Czas dojazdu wynosi ${arrivalTime}.`
+        return `Czas dojazdu wynosi ${distance}.`
       }
     }
   }
