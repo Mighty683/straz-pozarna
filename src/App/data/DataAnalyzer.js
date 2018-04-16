@@ -1,3 +1,5 @@
+import PathFinder from './PathFinder.js'
+
 export default {
   prepareData (data) {
     let citiesGraph = this.prepareCitiesGraph(data)
@@ -28,41 +30,36 @@ export default {
       return {
         name: cityNode.name,
         hasFireBrigade: cityNode.hasFireBrigade,
-        arrivalTime: this.calculateArrivalTime(cityNode, citiesGraph)
+        distance: this.calculateFireBrigadeArrival(cityNode, citiesGraph)
       }
     })
   },
 
-  calculateArrivalTime (cityNode, initialTime) {
-    let arrivalTime = 0
+  calculateFireBrigadeArrival (cityNode, citiesGraph) {
     if (cityNode.hasFireBrigade) {
-      return arrivalTime
+      return 0
     } else {
-        return this.calculateShortestArrivalTime(cityNode, citiesGraph)
+      let citiesWithFireBrigades = citiesGraph.filter(city => city.hasFireBrigade),
+      timeTable = citiesWithFireBrigades.map(cityWithFireBrigade => {
+        return PathFinder.findShortestPath(cityNode, cityWithFireBrigade, citiesGraph)
+      })
+      return timeTable.sort(
+        (timeA, timeB) => {
+          if (!isFinite(timeA - timeB)) {
+            return !isFinite(timeA) ? 1 : -1;
+          } else {
+            return timeA - timeB
+          }
+      })[0]
     }
+
   },
-
-  calculateShortestArrivalTime (cityNode, citiesGraph) {
-    let citiesWithFireBrigade = citiesGraph.filter(cityNode => cityNode.hasFireBrigade)
-    timeTable = citiesWithFireBrigade.map(cityWithFireBrigade => {
-      return this.findShortestPath(cityNode, cityWithFireBrigade, citiesGraph)
-    }
-    return timeTable.sort.find
-  },
-
-  findShortestPath (sourceNode, destNode, graph) {
-    let path = [],
-      nextNode = sourceNode
-    while ()
-    nextNode = sourceNode.roads.find()
-  }
-
   findConnectedCities (data, city) {
     return data.drogi.filter(road => {
       return road.miasta.indexOf(city.nazwa) >= 0
     }).map(road => {
       return {
-        arrivalTime: road.czas_przejazdu,
+        distance: road.czas_przejazdu,
         dest: road.miasta.find(cityName => cityName !== city.nazwa)
       }
     })
