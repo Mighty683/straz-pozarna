@@ -38,7 +38,7 @@ export default {
     if (cityNode.hasFireBrigade) {
       return arrivalTime
     } else {
-      // TODO Rekurencja?
+      // TODO Djiskra graf
       for (let i = 0; i < cityNode.roads.length; i++) {
         let road = cityNode.roads[i]
         if (road.dest.hasFireBrigade) {

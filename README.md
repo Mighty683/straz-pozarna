@@ -1,5 +1,5 @@
 # Straż Pożarna
-Example application created with React.
+Example application created with React. Main purpose of application is to calculate arrival time of fire brigade and highlight dangered cities.
 
 ## Development
 Node.js and NPM are required to run application.
@@ -9,7 +9,7 @@ First install dependencies by running in project folder:
 then run:
 `npm start`
 
-New browser windows should appear. If it doesn't happen simply get to `http://localhost:3000`
+New browser windows should appear. If it doesn't happen simply go to `http://localhost:3000`
 
 Example JSON required by application:
 ```json
@@ -36,7 +36,7 @@ Example JSON required by application:
 To run production build use command:
 `npm run build`
 
-After that build folder should be created. Now you can serve appliaction.
+After that build folder should be created. Now you can serve application.
 
 For example use serve or http-serve package.
 
@@ -45,4 +45,4 @@ If you don't have installed serve package run command:
 then:
 serve -s build
 
-Application should be avalaible on `http://localhost:8080`
+Application should be available on `http://localhost:8080`

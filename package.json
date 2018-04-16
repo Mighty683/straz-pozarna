@@ -25,6 +25,7 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
+    "djv": "^2.0.0",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "reactstrap": "^5.0.0-beta.3"
