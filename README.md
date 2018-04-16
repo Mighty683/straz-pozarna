@@ -15,17 +15,24 @@ Example JSON required by application:
 ```json
 {
   "miasta" : [
-    {"nazwa" : "A", "ma_jednostke" : false },
-    {"nazwa" : "B","ma_jednostke" : true},
+    {"nazwa" : "A", "ma_jednostke" : true },
+    {"nazwa" : "B","ma_jednostke" : false},
     {"nazwa" : "C","ma_jednostke" : false},
     {"nazwa" : "D","ma_jednostke" : false },
-    {"nazwa" : "E", "ma_jednostke" : true }
+    {"nazwa" : "E", "ma_jednostke" : false },
+    {"nazwa" : "F", "ma_jednostke" : true }
+    
   ],
   "drogi" : [
-    {"miasta" : ["A", "B"],"czas_przejazdu" : 20},
-    {"miasta" : ["A", "C"],"czas_przejazdu" : 3},
-    {"miasta" : ["A", "D"],"czas_przejazdu" : 4},
-    {"miasta" : ["A", "E"],"czas_przejazdu" : 11}
+    {"miasta" : ["A", "B"],"czas_przejazdu" : 10},
+    {"miasta" : ["A", "C"],"czas_przejazdu" : 11},
+    {"miasta" : ["A", "E"],"czas_przejazdu" : 10},
+    {"miasta" : ["B", "C"],"czas_przejazdu" : 8},
+    {"miasta" : ["B", "D"],"czas_przejazdu" : 4},
+    {"miasta" : ["C", "D"],"czas_przejazdu" : 5},
+    {"miasta" : ["C", "E"],"czas_przejazdu" : 8},
+    {"miasta" : ["D", "E"],"czas_przejazdu" : 2},
+    {"miasta" : ["E", "F"],"czas_przejazdu" : 5}
   ],
   "max_czas_przejazdu" : 10
 }
