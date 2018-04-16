@@ -28,7 +28,7 @@ export default {
       return {
         name: cityNode.name,
         hasFireBrigade: cityNode.hasFireBrigade,
-        arrivalTime: this.calculateArrivalTime(cityNode)
+        arrivalTime: this.calculateArrivalTime(cityNode, citiesGraph)
       }
     })
   },
@@ -38,17 +38,24 @@ export default {
     if (cityNode.hasFireBrigade) {
       return arrivalTime
     } else {
-      // TODO Djiskra graf
-      for (let i = 0; i < cityNode.roads.length; i++) {
-        let road = cityNode.roads[i]
-        if (road.dest.hasFireBrigade) {
-          return road.arrivalTime
-        } else {
-          return -1
-        }
-      }
+        return this.calculateShortestArrivalTime(cityNode, citiesGraph)
     }
   },
+
+  calculateShortestArrivalTime (cityNode, citiesGraph) {
+    let citiesWithFireBrigade = citiesGraph.filter(cityNode => cityNode.hasFireBrigade)
+    timeTable = citiesWithFireBrigade.map(cityWithFireBrigade => {
+      return this.findShortestPath(cityNode, cityWithFireBrigade, citiesGraph)
+    }
+    return timeTable.sort.find
+  },
+
+  findShortestPath (sourceNode, destNode, graph) {
+    let path = [],
+      nextNode = sourceNode
+    while ()
+    nextNode = sourceNode.roads.find()
+  }
 
   findConnectedCities (data, city) {
     return data.drogi.filter(road => {
