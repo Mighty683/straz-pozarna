@@ -9,7 +9,7 @@ export default {
     }
   },
 
-  prepareCitiesGraph (data) {
+  prepareCitiesGraphTable (data) {
     let graph = data.miasta.map(city => {
       return {
         name: city.nazwa,

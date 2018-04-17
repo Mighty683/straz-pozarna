@@ -5,11 +5,12 @@ export default {
       sourceNode = resultTable.find(node => node.city === sourceCity),
       currentNode = sourceNode,
       destNode = resultTable.find(node => node.city === destCity)
+      currentNode.distance = 0
     do {
       let nodesToVisit = this.findNodesToVisit(resultTable)
       if (nodesToVisit) {
         this.findAvailableRoads(nodesToVisit, currentNode).forEach(road => {
-          let nextCity = resultTable.find(node => node.city === road.dest)
+          let nextCity = resultTable.find(node => node.city.name === road.dest)
           this.setNextCity(road.distance, currentNode, nextCity)
         })
         this.setCityVisited(currentNode)
@@ -26,7 +27,7 @@ export default {
     return graphTable.map(city => {
       return {
         city: city,
-        distance: 0,
+        distance: undefined,
         visited: false,
         prevNode: undefined
       }
@@ -34,7 +35,6 @@ export default {
   },
 
   setNextCity (roadDistance, sourceNode, destNode) {
-
     let sourceNodeDistance = sourceNode.distance + roadDistance
     if (destNode.distance) {
       if (destNode.distance > sourceNode.distance + roadDistance) {
@@ -53,7 +53,7 @@ export default {
 
   findAvailableRoads (nodesTable, currentNode) {
     return currentNode.city.roads.filter(
-      road => nodesTable.find(node => node.city === road.dest))
+      road => nodesTable.find(node => node.city.name === road.dest))
   },
 
   findNodesToVisit (resultTable) {

@@ -4,10 +4,10 @@ class CityPanel extends Component {
   getClass () {
     let className = 'city-panel list-group-item ',
       distance = this.props.cityData.distance
-    if (distance < this.props.maxTime && distance >= 0) {
-      className += 'list-group-item-success '
-    } else if (distance === this.props.maxTime) {
+    if (!isFinite(distance)) {
       className += 'list-group-item-warning '
+    } else if (distance < this.props.maxTime && distance >= 0) {
+      className += 'list-group-item-success '
     } else {
       className += 'list-group-item-danger '
     }
@@ -18,7 +18,7 @@ class CityPanel extends Component {
     if (this.props.cityData.hasFireBrigade) {
       return 'Posiada jednostkę straży pożarnej.'
     } else {
-      if (distance < 0) {
+      if (!isFinite(distance)) {
         return 'Brak możliwości dojazdu straży pożarnej.'
       } else if (distance > this.props.maxTime) {
         return `Czas dojazdu "${distance}" przekracza przyjęty limit.`

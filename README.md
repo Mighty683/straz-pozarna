@@ -20,8 +20,10 @@ Example JSON required by application:
     {"nazwa" : "C","ma_jednostke" : false},
     {"nazwa" : "D","ma_jednostke" : false },
     {"nazwa" : "E", "ma_jednostke" : false },
-    {"nazwa" : "F", "ma_jednostke" : true }
-    
+    {"nazwa" : "F", "ma_jednostke" : true },
+    {"nazwa" : "G", "ma_jednostke" : false },
+    {"nazwa" : "H", "ma_jednostke" : false }
+
   ],
   "drogi" : [
     {"miasta" : ["A", "B"],"czas_przejazdu" : 10},
