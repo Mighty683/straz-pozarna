@@ -53,10 +53,10 @@ class Main extends Component {
               <Welcome handleContinue={this.handleContinue} />
             )} />
             <Route path='/form' render={() => (
-              <MainForm {... {handleDataChange: this.handleDataChange, rawJSON: this.state.rawJSON}} />
+              <MainForm {... {handleDataChange: this.handleDataChange, rawJSON: this.state.JSON}} />
             )} />
             <Route path='/datapanel' render={() => (
-              <DataPanel {... {citiesData: this.state.parsedJSON.citiesData, maxTime: this.state.parsedJSON.maxTime}} />
+              <DataPanel {... {JSON: this.state.JSON}} />
             )} />
           </Switch>
           <footer className='text-muted'>Made by Tomasz Szarek 2018</footer>

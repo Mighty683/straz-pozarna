@@ -1,8 +1,10 @@
 import PathFinder from './PathFinder.js'
 
 export default {
-  parseData (data) {
-    let citiesGraph = this.prepareCitiesGraphTable(data)
+  parseData (json) {
+    debugger
+    let data = JSON.parse(json),
+      citiesGraph = this.prepareCitiesGraphTable(data)
     return {
       citiesData: this.prepareCitiesData(citiesGraph),
       maxTime: data.max_czas_przejazdu
