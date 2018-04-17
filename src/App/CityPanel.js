@@ -6,7 +6,7 @@ class CityPanel extends Component {
       distance = this.props.cityData.distance
     if (!isFinite(distance)) {
       className += 'list-group-item-warning '
-    } else if (distance < this.props.maxTime && distance >= 0) {
+    } else if (distance <= this.props.maxTime && distance >= 0) {
       className += 'list-group-item-success '
     } else {
       className += 'list-group-item-danger '

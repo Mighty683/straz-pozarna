@@ -17,8 +17,7 @@ class Main extends Component {
   constructor () {
     super()
     this.state = {
-      rawJSON: '',
-      parsedJSON: {}
+      JSON: ''
     }
     this.handleContinue = this.handleContinue.bind(this)
     this.handleDataChange = this.handleDataChange.bind(this)
@@ -53,7 +52,7 @@ class Main extends Component {
               <Welcome handleContinue={this.handleContinue} />
             )} />
             <Route path='/form' render={() => (
-              <MainForm {... {handleDataChange: this.handleDataChange, rawJSON: this.state.JSON}} />
+              <MainForm {... {handleDataChange: this.handleDataChange, JSON: this.state.JSON}} />
             )} />
             <Route path='/datapanel' render={() => (
               <DataPanel {... {JSON: this.state.JSON}} />

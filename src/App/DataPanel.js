@@ -7,7 +7,7 @@ const DataPanel = ({JSON}) => {
   return (
     <ul className='data-panel list-group'>
       {
-        parsedData.citiesData
+        parsedData && parsedData.citiesData
           ? (parsedData.citiesData.map(city => <CityPanel {... {cityData: city, maxTime: parsedData.maxTime}} />))
           : (<h2> Brak danych, wróc do formularza.</h2>)
       }
