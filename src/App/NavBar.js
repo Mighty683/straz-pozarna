@@ -19,8 +19,8 @@ class NavBar extends Component {
   }
 
   toggle () {
-    this.setState(prevState => {
-      isOpen: !prevState.isOpen
+    this.setState({
+      isOpen: !this.state.isOpen
     })
   }
 
