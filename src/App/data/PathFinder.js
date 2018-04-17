@@ -1,26 +1,30 @@
 export default {
   findShortestPath(sourceCity, destCity, graphTable) {
-    // Finding best ways by Dijskra algorithm.
+    // Finding best ways using Dijskra algorithm.
     let resultTable = this.getResultTable(graphTable),
       sourceNode = resultTable.find(node => node.city === sourceCity),
       currentNode = sourceNode,
       destNode = resultTable.find(node => node.city === destCity)
-      currentNode.distance = 0
+      sourceNode.distance = 0
     do {
-      let nodesToVisit = this.findNodesToVisit(resultTable)
-      if (nodesToVisit) {
-        this.findAvailableRoads(nodesToVisit, currentNode).forEach(road => {
-          let nextCity = resultTable.find(node => node.city.name === road.dest)
-          this.setNextCity(road.distance, currentNode, nextCity)
-        })
-        this.setCityVisited(currentNode)
-        currentNode = this.findNearestNodeToVisit(nodesToVisit, currentNode)
-      } else {
-        currentNode = undefined
-      }
+      currentNode = this.dijskraAlgorithmStep(resultTable, currentNode)
     }
     while (currentNode && currentNode !== destNode)
     return destNode.distance
+  },
+
+  dijskraAlgorithmStep (resultTable, nodeToProcess) {
+    let nodesToVisit = this.findNodesToVisit(resultTable)
+    if (nodesToVisit) {
+      this.findAvailableRoads(nodesToVisit, nodeToProcess).forEach(road => {
+        let nextCity = resultTable.find(node => node.city.name === road.dest)
+        this.setNextCity(road.distance, nodeToProcess, nextCity)
+      })
+      this.setCityVisited(nodeToProcess)
+      return this.findNearestNodeToVisit(nodesToVisit, nodeToProcess)
+    } else {
+      return undefined
+    }
   },
 
   getResultTable (graphTable) {
@@ -51,8 +55,8 @@ export default {
     city.visited = true
   },
 
-  findAvailableRoads (nodesTable, currentNode) {
-    return currentNode.city.roads.filter(
+  findAvailableRoads (nodesTable, sourceNode) {
+    return sourceNode.city.roads.filter(
       road => nodesTable.find(node => node.city.name === road.dest))
   },
 

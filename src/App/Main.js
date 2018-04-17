@@ -16,7 +16,10 @@ class Main extends Component {
   }
   constructor () {
     super()
-    this.state = {}
+    this.state = {
+      rawJSON: '',
+      parsedJSON: {}
+    }
     this.handleContinue = this.handleContinue.bind(this)
     this.handleDataChange = this.handleDataChange.bind(this)
   }
@@ -50,10 +53,10 @@ class Main extends Component {
               <Welcome handleContinue={this.handleContinue} />
             )} />
             <Route path='/form' render={() => (
-              <MainForm handleDataChange={this.handleDataChange} />
+              <MainForm {... {handleDataChange: this.handleDataChange, rawJSON: this.state.rawJSON}} />
             )} />
             <Route path='/datapanel' render={() => (
-              <DataPanel {... {citiesData: this.state.citiesData, maxTime: this.state.maxTime}} />
+              <DataPanel {... {citiesData: this.state.parsedJSON.citiesData, maxTime: this.state.parsedJSON.maxTime}} />
             )} />
           </Switch>
           <footer className='text-muted'>Made by Tomasz Szarek 2018</footer>

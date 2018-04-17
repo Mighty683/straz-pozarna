@@ -47,7 +47,6 @@ export default {
           }
       })[0]
     }
-
   },
   findConnectedCities (data, city) {
     return data.drogi.filter(road => {

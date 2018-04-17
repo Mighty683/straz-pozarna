@@ -10,7 +10,7 @@ class MainForm extends Component {
     super(props)
 
     this.state = {
-      textArea: 'Dzwoń po JSONA!'
+      textArea: props.rawJSON || 'Dzwoń po JSONA!'
     }
 
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -26,9 +26,7 @@ class MainForm extends Component {
       let env = new djv()
       env.addSchema('test', jsonSchema)
       if (env.validate('test', parsedObject)) {
-        throw {
-          msg: 'Brak wymaganych danych!'
-        }
+        throw new Error ('Brak wymaganych danych!')
       }
       parsedObject = DataAnalyzer.parseData(parsedObject)
     } catch (err) {
@@ -41,7 +39,10 @@ class MainForm extends Component {
       return
     }
     this.props.alert.success('Załadowano dane!')
-    this.props.handleDataChange(parsedObject)
+    this.props.handleDataChange({
+      rawJSON: this.state.textArea,
+      parsedJSON: parsedObject
+    })
   }
 
   handleTextAreaChange (event) {
