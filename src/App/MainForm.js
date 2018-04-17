@@ -30,13 +30,13 @@ class MainForm extends Component {
           msg: 'Brak wymaganych danych!'
         }
       }
-      parsedObject = DataAnalyzer.prepareData(parsedObject)
+      parsedObject = DataAnalyzer.parseData(parsedObject)
     } catch (err) {
       console.log(err)
-      if (typeof err.msg === 'string') {
-        this.props.alert.error(err.msg)
-      } else {
+      if (err instanceof SyntaxError) {
         this.props.alert.error('Zły format danych, wprowadź poprawny JSON!')
+      } else {
+        this.props.alert.error(err.message)
       }
       return
     }

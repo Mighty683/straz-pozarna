@@ -1,6 +1,6 @@
 export default {
-  prepareData (data) {
-    let citiesGraph = this.prepareCitiesGraph(data)
+  parseData (data) {
+    let citiesGraph = this.prepareCitiesGraphTable(data)
     return {
       citiesData: this.prepareCitiesData(citiesGraph),
       maxTime: data.max_czas_przejazdu
@@ -14,11 +14,6 @@ export default {
         hasFireBrigade: city.ma_jednostke,
         roads: this.findConnectedCities(data, city)
       }
-    })
-    graph.forEach(cityNode => {
-      cityNode.roads.forEach(road => {
-        road.dest = graph.find(cityNode => cityNode.name === road.dest)
-      })
     })
     return graph
   },
