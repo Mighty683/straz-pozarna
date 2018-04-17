@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { withAlert } from 'react-alert'
-import jsonSchema from './data/jsonSchema.json'
 import { Button } from 'reactstrap'
-import djv from 'djv'
+import DataAnalyzer from './data/DataAnalyzer.js'
 
 class MainForm extends Component {
   constructor (props) {
@@ -17,28 +16,16 @@ class MainForm extends Component {
   }
 
   handleSubmit (values) {
-    let parsedObject
     values.preventDefault()
-    try {
-      parsedObject = JSON.parse(this.state.textArea)
-      let env = new djv()
-      env.addSchema('test', jsonSchema)
-      if (env.validate('test', parsedObject)) {
-        throw new Error ('Brak wymaganych danych!')
-      }
-    } catch (err) {
-      console.log(err)
-      if (err instanceof SyntaxError) {
-        this.props.alert.error('Zły format danych, wprowadź poprawny JSON!')
-      } else {
-        this.props.alert.error(err.message)
-      }
-      return
+    let error = DataAnalyzer.validateJSON(this.state.textArea)
+    if (error) {
+      this.props.alert.error(error)
+    } else {
+      this.props.alert.success('Załadowano dane!')
+      this.props.handleDataChange({
+        JSON: this.state.textArea
+      })
     }
-    this.props.alert.success('Załadowano dane!')
-    this.props.handleDataChange({
-      JSON: this.state.textArea
-    })
   }
 
   handleTextAreaChange (event) {

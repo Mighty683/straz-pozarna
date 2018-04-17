@@ -1,18 +1,18 @@
 import React, { Component } from 'react'
 
 class CityPanel extends Component {
+
   getClass () {
-    let className = 'city-panel list-group-item ',
-      distance = this.props.cityData.distance
+    let  distance = this.props.cityData.distance
     if (!isFinite(distance)) {
-      className += 'list-group-item-warning '
+      return 'list-group-item-warning '
     } else if (distance <= this.props.maxTime && distance >= 0) {
-      className += 'list-group-item-success '
+      return 'list-group-item-success '
     } else {
-      className += 'list-group-item-danger '
+      return 'list-group-item-danger '
     }
-    return className
   }
+
   getInfoAboutFireBrigade () {
     let distance = this.props.cityData.distance
     if (this.props.cityData.hasFireBrigade) {
@@ -30,7 +30,7 @@ class CityPanel extends Component {
 
   render () {
     return (
-      <li className={this.getClass()}>
+      <li className={`city-panel list-group-item ${this.getClass()}`}>
         <p>Nazwa: <span> {this.props.cityData.name} </span></p>
         <p>{this.getInfoAboutFireBrigade()}</p>
       </li>

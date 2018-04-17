@@ -1,6 +1,28 @@
 import PathFinder from './PathFinder.js'
+import djv from 'djv'
+import jsonSchema from './jsonSchema.json'
 
 export default {
+
+  validateJSON (jsonString) {
+    let parsedObject
+    try {
+      parsedObject = JSON.parse(jsonString)
+      let env = new djv()
+      env.addSchema('test', jsonSchema)
+      if (env.validate('test', parsedObject)) {
+        throw new Error ('Brak wymaganych danych!')
+      }
+    } catch (err) {
+      if (err instanceof SyntaxError) {
+        return 'Zły format danych, wprowadź poprawny JSON!'
+      } else {
+        return err.message
+      }
+    }
+    return undefined
+  },
+
   parseData (json) {
     try {
       let data = JSON.parse(json),
