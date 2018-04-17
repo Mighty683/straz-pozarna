@@ -1,5 +1,6 @@
 # Straż Pożarna
 https://github.com/Mighty683/straz-pozarna/
+
 Example application created with React. Main purpose of application is to calculate arrival time of fire brigade and highlight cities in danger.
 
 ## Development
