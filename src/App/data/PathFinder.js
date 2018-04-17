@@ -1,11 +1,11 @@
 export default {
-  findShortestPath(sourceCity, destCity, graphTable) {
+  findShortestPath (sourceCity, destCity, graphTable) {
     // Finding best ways using Dijskra algorithm.
     let resultTable = this.getResultTable(graphTable),
       sourceNode = resultTable.find(node => node.city === sourceCity),
       currentNode = sourceNode,
       destNode = resultTable.find(node => node.city === destCity)
-      sourceNode.distance = 0
+    sourceNode.distance = 0
     do {
       currentNode = this.dijskraAlgorithmStep(resultTable, currentNode)
     }
@@ -79,14 +79,14 @@ export default {
       distance += currentNode.distance
       currentNode = currentNode.prevNode
     }
-    return distance ? distance : undefined
+    return distance || undefined
   },
 
   compareNodeDistances (nodeA, nodeB, sourceNode) {
     let distA = this.calculateDistance(sourceNode, nodeA),
       distB = this.calculateDistance(sourceNode, nodeB)
     if (!isFinite(distA - distB)) {
-      return !isFinite(distA) ? 1 : -1;
+      return !isFinite(distA) ? 1 : -1
     } else {
       return distA - distB
     }

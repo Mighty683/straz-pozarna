@@ -11,7 +11,7 @@ export default {
       let env = new djv()
       env.addSchema('test', jsonSchema)
       if (env.validate('test', parsedObject)) {
-        throw new Error ('Brak wymaganych danych!')
+        throw new Error('Brak wymaganych danych!')
       }
     } catch (err) {
       if (err instanceof SyntaxError) {
@@ -31,8 +31,7 @@ export default {
         citiesData: this.prepareCitiesData(citiesGraph),
         maxTime: data.max_czas_przejazdu
       }
-    }
-    catch (err) {
+    } catch (err) {
       return undefined
     }
   },
@@ -63,17 +62,17 @@ export default {
       return 0
     } else {
       let citiesWithFireBrigades = citiesGraph.filter(city => city.hasFireBrigade),
-      timeTable = citiesWithFireBrigades.map(cityWithFireBrigade => {
-        return PathFinder.findShortestPath(cityNode, cityWithFireBrigade, citiesGraph)
-      })
+        timeTable = citiesWithFireBrigades.map(cityWithFireBrigade => {
+          return PathFinder.findShortestPath(cityNode, cityWithFireBrigade, citiesGraph)
+        })
       return timeTable.sort(
         (timeA, timeB) => {
           if (!isFinite(timeA - timeB)) {
-            return !isFinite(timeA) ? 1 : -1;
+            return !isFinite(timeA) ? 1 : -1
           } else {
             return timeA - timeB
           }
-      })[0]
+        })[0]
     }
   },
   findConnectedCities (data, city) {

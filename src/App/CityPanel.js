@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 
 class CityPanel extends Component {
-
   getClass () {
-    let  distance = this.props.cityData.distance
+    let distance = this.props.cityData.distance
     if (!isFinite(distance)) {
       return 'list-group-item-warning '
     } else if (distance <= this.props.maxTime && distance >= 0) {
