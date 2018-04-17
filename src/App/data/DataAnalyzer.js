@@ -2,7 +2,6 @@ import PathFinder from './PathFinder.js'
 
 export default {
   parseData (json) {
-    debugger
     let data = JSON.parse(json),
       citiesGraph = this.prepareCitiesGraphTable(data)
     return {

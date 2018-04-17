@@ -1,25 +1,18 @@
-import React, { Component } from 'react'
+import React from 'react'
 import CityPanel from './CityPanel.js'
 import DataAnalyzer from './data/DataAnalyzer.js'
 
-class DataPanel extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      ...DataAnalyzer.parseData(props.JSON)
-    }
-  }
-  render () {
-    return (
-      <ul className='data-panel list-group'>
-        {
-          this.state.citiesData
-            ? (this.state.citiesData.map(city => <CityPanel {... {cityData: city, maxTime: this.state.maxTime}} />))
-            : (<h2> Brak danych, wróc do formularza.</h2>)
-        }
-      </ul>
-    )
-  }
+const DataPanel = ({JSON}) => {
+  const parsedData = DataAnalyzer.parseData(JSON)
+  return (
+    <ul className='data-panel list-group'>
+      {
+        parsedData.citiesData
+          ? (parsedData.citiesData.map(city => <CityPanel {... {cityData: city, maxTime: parsedData.maxTime}} />))
+          : (<h2> Brak danych, wróc do formularza.</h2>)
+      }
+    </ul>
+  )
 }
 
 export default DataPanel

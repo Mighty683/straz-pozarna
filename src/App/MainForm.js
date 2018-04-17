@@ -19,7 +19,6 @@ class MainForm extends Component {
   handleSubmit (values) {
     let parsedObject
     values.preventDefault()
-    // TODO: Refactor
     try {
       parsedObject = JSON.parse(this.state.textArea)
       let env = new djv()
