@@ -14,14 +14,13 @@ export default {
   },
 
   dijskraAlgorithmStep (resultTable, nodeToProcess) {
-    let nodesToVisit = this.findNodesToVisit(resultTable)
-    if (nodesToVisit) {
-      this.findAvailableRoads(nodesToVisit, nodeToProcess).forEach(road => {
+    if (resultTable) {
+      this.findAvailableRoads(resultTable, nodeToProcess).forEach(road => {
         let nextCity = resultTable.find(node => node.city.name === road.dest)
         this.setNextCity(road.distance, nodeToProcess, nextCity)
       })
-      this.setCityVisited(nodeToProcess)
-      return this.findNearestNodeToVisit(nodesToVisit, nodeToProcess)
+      this.removeCityFromTable(resultTable, nodeToProcess)
+      return this.findNearestNodeToVisit(resultTable, nodeToProcess)
     } else {
       return undefined
     }
@@ -32,7 +31,6 @@ export default {
       return {
         city: city,
         distance: undefined,
-        visited: false,
         prevNode: undefined
       }
     })
@@ -51,18 +49,14 @@ export default {
     }
   },
 
-  setCityVisited (city) {
-    city.visited = true
+  removeCityFromTable (resultTable, nodeToProcess) {
+    let nodeToRemoveIndex = resultTable.indexOf(nodeToProcess)
+    resultTable.splice(nodeToRemoveIndex, 1)
   },
 
   findAvailableRoads (nodesTable, sourceNode) {
     return sourceNode.city.roads.filter(
       road => nodesTable.find(node => node.city.name === road.dest))
-  },
-
-  findNodesToVisit (resultTable) {
-    return resultTable.filter(
-      node => !node.visited)
   },
 
   findNearestNodeToVisit (nodesTable, sourceNode) {
