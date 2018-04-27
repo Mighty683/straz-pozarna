@@ -19,9 +19,9 @@ class NavBar extends Component {
   }
 
   toggle () {
-    this.setState(prevState => {
+    this.setState((prevState) => ({
       isOpen: !prevState.isOpen
-    })
+    }))
   }
 
   render () {
