@@ -61,18 +61,18 @@ export default {
     if (cityNode.hasFireBrigade) {
       return 0
     } else {
-      let citiesWithFireBrigades = citiesGraph.filter(city => city.hasFireBrigade),
-        timeTable = citiesWithFireBrigades.map(cityWithFireBrigade => {
-          return PathFinder.findShortestPath(cityNode, cityWithFireBrigade, citiesGraph)
-        })
-      return timeTable.sort(
-        (timeA, timeB) => {
+      let timeTable = PathFinder.generateTimeTable(cityNode, citiesGraph)
+      let nodesWithFireBrigades = timeTable.filter(node => node.city.hasFireBrigade)
+      return nodesWithFireBrigades.sort(
+        (nodeA, nodeB) => {
+          let timeA = nodeA.distance,
+            timeB = nodeB.distance
           if (!isFinite(timeA - timeB)) {
             return !isFinite(timeA) ? 1 : -1
           } else {
             return timeA - timeB
           }
-        })[0]
+        })[0].distance
     }
   },
   findConnectedCities (data, city) {

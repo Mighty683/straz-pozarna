@@ -1,16 +1,16 @@
 export default {
-  findShortestPath (sourceCity, destCity, graphTable) {
+  generateTimeTable (sourceCity, graphTable) {
     // Finding best ways using Dijskra algorithm.
-    let resultTable = this.getResultTable(graphTable),
-      sourceNode = resultTable.find(node => node.city === sourceCity),
-      currentNode = sourceNode,
-      destNode = resultTable.find(node => node.city === destCity)
+    let workTable = this.getResultTable(graphTable),
+      resultTable = workTable.slice(),
+      sourceNode = workTable.find(node => node.city === sourceCity),
+      currentNode = sourceNode
     sourceNode.distance = 0
     do {
-      currentNode = this.dijskraAlgorithmStep(resultTable, currentNode)
+      currentNode = this.dijskraAlgorithmStep(workTable, currentNode)
     }
-    while (currentNode && currentNode !== destNode)
-    return destNode.distance
+    while (currentNode)
+    return resultTable
   },
 
   dijskraAlgorithmStep (resultTable, nodeToProcess) {
