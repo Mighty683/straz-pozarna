@@ -61,8 +61,8 @@ export default {
     if (cityNode.hasFireBrigade) {
       return 0
     } else {
-      let timeTable = PathFinder.generateTimeTable(cityNode, citiesGraph)
-      let nodesWithFireBrigades = timeTable.filter(node => node.city.hasFireBrigade)
+      let timeTable = PathFinder.generateTimeTable(cityNode, citiesGraph),
+        nodesWithFireBrigades = timeTable.filter(node => node.city.hasFireBrigade)
       return nodesWithFireBrigades.sort(
         (nodeA, nodeB) => {
           let timeA = nodeA.distance,

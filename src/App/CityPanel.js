@@ -1,40 +1,37 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-class CityPanel extends Component {
-  getClass () {
-    let distance = this.props.cityData.distance
+const CityPanel = (props) => {
+  const getClass = () => {
+    let distance = props.cityData.distance
     if (!isFinite(distance)) {
       return 'list-group-item-warning '
-    } else if (distance <= this.props.maxTime && distance >= 0) {
+    } else if (distance <= props.maxTime && distance >= 0) {
       return 'list-group-item-success '
     } else {
       return 'list-group-item-danger '
     }
   }
-
-  getInfoAboutFireBrigade () {
-    let distance = this.props.cityData.distance
-    if (this.props.cityData.hasFireBrigade) {
+  const getInfoAboutFireBrigade = () => {
+    let distance = props.cityData.distance
+    if (props.cityData.hasFireBrigade) {
       return 'Posiada jednostkę straży pożarnej.'
     } else {
       if (!isFinite(distance)) {
         return 'Brak możliwości dojazdu straży pożarnej.'
-      } else if (distance > this.props.maxTime) {
-        return `Czas dojazdu "${distance}" przekracza przyjęty limit.`
-      } else {
+      } else if (distance <= props.maxTime && distance >= 0) {
         return `Czas dojazdu wynosi ${distance}.`
+      } else {
+        return `Czas dojazdu "${distance}" przekracza przyjęty limit.`
       }
     }
   }
 
-  render () {
-    return (
-      <li className={`city-panel list-group-item ${this.getClass()}`}>
-        <p>Nazwa: <span> {this.props.cityData.name} </span></p>
-        <p>{this.getInfoAboutFireBrigade()}</p>
-      </li>
-    )
-  }
+  return (
+    <li className={`city-panel list-group-item ${getClass()}`}>
+      <p>Nazwa: <span> {props.cityData.name} </span></p>
+      <p>{getInfoAboutFireBrigade()}</p>
+    </li>
+  )
 }
 
 export default CityPanel

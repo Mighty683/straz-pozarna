@@ -33,17 +33,17 @@ class NavBar extends Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className='ml-auto' navbar>
               <NavItem>
-                <NavLink onClick={()=>{
+                <NavLink onClick={() => {
                   this.props.history.push('/')
                 }}>Strona powitalna</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink onClick={()=>{
+                <NavLink onClick={() => {
                   this.props.history.push('/form')
                 }}>Formularz</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink onClick={()=>{
+                <NavLink onClick={() => {
                   this.props.history.push('/datapanel')
                 }}>Panel Danych</NavLink>
               </NavItem>
