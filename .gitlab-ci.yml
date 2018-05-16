@@ -11,5 +11,4 @@ test_async:
   stage: build
   script:
    - npm install
-   - npm run build-css
-   - npm run build-js
+   - npm run build

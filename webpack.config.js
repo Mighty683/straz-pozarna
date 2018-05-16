@@ -1,28 +1,29 @@
-const path = require('path');
-const webpack = require('webpack');
+const path = require('path')
+const HtmlWebPackPlugin = require('html-webpack-plugin')
+
+const htmlPlugin = new HtmlWebPackPlugin({
+  template: './src/index.html',
+  filename: './index.html'
+})
 
 module.exports = {
-  entry: [
-    'react-hot-loader/patch',
-    './src/index.js',
-  ],
-  output: {
-    path: path.resolve('build'),
-    filename: 'main.js'
-  },
+
   module: {
     rules: [
+      { test: /\.html$/,
+        use: [ { loader: 'html-loader' } ]
+      },
       { test: /\.scss$/,
         use: [
-          { loader: "style-loader" },
-          { loader: "css-loader" },
-          { loader: "sass-loader" }
+          { loader: 'style-loader' },
+          { loader: 'css-loader' },
+          { loader: 'sass-loader' }
         ]
       },
       { test: /\.css$/,
         use: [
-          { loader: "style-loader" },
-          { loader: "css-loader" }
+          { loader: 'style-loader' },
+          { loader: 'css-loader' }
         ]
       },
       {
@@ -32,9 +33,7 @@ module.exports = {
       }
     ]
   },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin()
-  ],
+  plugins: [htmlPlugin],
   devServer: {
     contentBase: path.resolve('build'),
     hot: true
