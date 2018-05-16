@@ -11,7 +11,7 @@ import DataPanel from './DataPanel.js'
 import NavBar  from './NavBar.js'
 
 class Main extends Component {
-  static propTypes = {
+  static propTypes: {
     history: PropTypes.object.isRequired
   }
   constructor () {
