@@ -1,5 +1,5 @@
 import PathFinder from './PathFinder.js'
-import djv from 'djv'
+import Djv from 'djv'
 import jsonSchema from './jsonSchema.json'
 
 export default {
@@ -8,7 +8,7 @@ export default {
     let parsedObject
     try {
       parsedObject = JSON.parse(jsonString)
-      let env = new djv()
+      let env = new Djv()
       env.addSchema('test', jsonSchema)
       if (env.validate('test', parsedObject)) {
         throw new Error('Brak wymaganych danych!')
