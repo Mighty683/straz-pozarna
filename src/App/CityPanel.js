@@ -1,7 +1,7 @@
 import React from 'react'
 
 const CityPanel = (props) => {
-  const getClass = () => {
+  function getClass () {
     let distance = props.cityData.distance
     if (!isFinite(distance)) {
       return 'list-group-item-warning '
@@ -11,7 +11,7 @@ const CityPanel = (props) => {
       return 'list-group-item-danger '
     }
   }
-  const getInfoAboutFireBrigade = () => {
+  function getInfoAboutFireBrigade () {
     let distance = props.cityData.distance
     if (props.cityData.hasFireBrigade) {
       return 'Posiada jednostkę straży pożarnej.'

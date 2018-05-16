@@ -25,7 +25,6 @@ Example JSON required by application:
     {"nazwa" : "F", "ma_jednostke" : true },
     {"nazwa" : "G", "ma_jednostke" : false },
     {"nazwa" : "H", "ma_jednostke" : false }
-
   ],
   "drogi" : [
     {"miasta" : ["A", "B"],"czas_przejazdu" : 10},
